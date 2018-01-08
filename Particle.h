@@ -1,4 +1,5 @@
 #ifndef Particle_H
+#define Particle_H
 
 #include <string>
 #include <array>

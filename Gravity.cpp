@@ -87,6 +87,7 @@ std::array<long double, 2> grav_accel(const long double m2, const std::array<lon
 	return acceleration;
 }
 
+/*
 std::array<long double, 2> time_integrate(Particle part, std::array<long double, 2> (*fprime)(std::array<long double, 2>)) {
 
-}
+}*/

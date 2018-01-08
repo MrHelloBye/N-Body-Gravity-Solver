@@ -2,6 +2,7 @@
 #ifndef Gravity_H
 
 #include <array>
+
 #include "Particle.h"
 
 //Vector operations

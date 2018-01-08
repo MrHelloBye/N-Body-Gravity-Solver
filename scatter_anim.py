@@ -14,7 +14,7 @@ ifile = open('output.csv', "rb")
 file = np.loadtxt(ifile, delimiter=',',skiprows=1)
 
 data = {} #dict to contain ordered pairs for each time
-times = [] #make a list of times to be keys of a dict
+times = [] #make a list of times to be keys of the dict
 rownum = 0
 for row in file:
     if rownum != 0:
@@ -51,7 +51,8 @@ scat.set_alpha(0.8)
 #frames is the number of frames to be animated
 #interval is the length of time in milliseconds between frames
 
-anim = animation.FuncAnimation(fig, update_plot, fargs = (fig,scat), frames = int(input("Number of frames:")), interval = int(input("Time interval:")))
-#anim.save('stuff.mp4')
+anim = animation.FuncAnimation(fig, update_plot, fargs = (fig,scat), frames = int(input("Number of frames: ")), interval = int(input("Time interval (ms): ")))
 
 plt.show()
+
+anim.save('gravity.gif', fps=30, dpi=150, writer='imagemagick')

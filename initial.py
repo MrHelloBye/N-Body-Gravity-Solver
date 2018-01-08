@@ -1,6 +1,7 @@
 import random
 
-N = 1000 # Number of particles
+
+N = int(input("How many particles?\n")) # Number of particles
 
 minmass,maxmass = 0,1
 minx,maxx = -10,10
