@@ -2,7 +2,7 @@
 
 An Euler many body solver I wrote for fun.
 
-Compile using `clang++ *.cpp -std=c++11`
+Compile using `clang++ *.cpp -std=c++11 -o Gravity`
 
 `initial.py`  randomly generates particles within a predefined box in space and velocity.
 

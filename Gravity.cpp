@@ -7,12 +7,14 @@
 
 #include "Gravity.h"
 
+/// Definition of Constants
+
 //long double G = 6.67408e-11; // m3kg-1s-2
 long double G = 1;
 
 long double mag(const std::array<long double, 2> vec)
 // Returns the norm of the vector
-// that the array represents
+// that the array represents.
 {
 	long double mag_squared = 0;
 	long double magnitude;
@@ -26,12 +28,15 @@ long double mag(const std::array<long double, 2> vec)
 }
 
 std::array<long double, 2> scalar_mult(const long double a, const std::array<long double, 2> vec)
-//Multiplies scalar to a vector
-//If scalar isn't finite, output is (0,0)
-//TODO: implement with std::transform
+  //Scalar vector multiplication
+  //If scalar isn't finite, output is (0,0)
+  //TODO: implement with std::transform
 {
 	std::array<long double, 2> new_vec;
-	if (!std::isfinite(a))
+	
+    // If the scalar isn't finite,
+    // the vector is set to zero to avoid infinity problems
+    if (!std::isfinite(a))
 	{
 		new_vec = {0,0};
 	}
@@ -50,26 +55,15 @@ std::array<long double, 2> scalar_mult(const long double a, const std::array<lon
 }
 
 std::array<long double, 2> add_vectors(const std::array<long double,2> vec1, const std::array<long double,2> vec2)
+	//Vector addition
 {
 	std::array<long double, 2> new_vec;
-	for (unsigned int i = 0; i < new_vec.size(); i++)
+  
+	for (unsigned int i = 0; i < sizeof(vec1)/sizeof(vec1[0]); i++)
 	{
-		new_vec[i] = vec1[i] + vec2[i];
+		new_vec.at(i) = vec1.at(i) + vec2.at(i); // Use .at() because checks bounds
 	}
 	return new_vec;
-}
-
-std::array<long double, 2> sep_vec(const std::array<long double, 2> pos1, const std::array<long double, 2> pos2)
-// Calculates the separation vector
-{
-	std::array<long double, 2> sep_vec;
-
-	for (unsigned int i = 0; i < sizeof(pos1)/sizeof(pos1[0]); i++)
-	{
-		sep_vec.at(i) = pos1.at(i)-pos2.at(i); // Use .at() because checks bounds
-	}
-
-	return sep_vec;
 }
 
 std::array<long double, 2> grav_accel(const long double m2, const std::array<long double, 2> pos1, const std::array<long double, 2> pos2)
@@ -77,7 +71,7 @@ std::array<long double, 2> grav_accel(const long double m2, const std::array<lon
 // for gravitational force
 {
 	//Determine separation vector and related values
-	std::array<long double, 2> r = sep_vec(pos1,pos2);
+	std::array<long double, 2> r = add_vectors(pos1, scalar_mult(-1,pos2));
 	std::array<long double, 2> r_hat = scalar_mult(pow(mag(r),-1),r);
 	long double r_2 = pow(mag(r),2);
 	
