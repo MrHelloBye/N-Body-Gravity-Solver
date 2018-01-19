@@ -52,7 +52,8 @@ int main() {
 	temp_pos.reserve(num_of_particles);
 	vector<array<long double, 2>> temp_vel;
 	temp_vel.reserve(num_of_particles);
-	//Print out gravitational acceleration of all particles
+	
+    //Print out gravitational acceleration of all particles
 	unsigned int i = 0;
 	unsigned int modulus = 1;
 	for (long double t = 0; t <= duration; t+=dt)
@@ -96,7 +97,8 @@ int main() {
 
 		i++;
 	}
-	//Clean up and close
+	
+    //Clean up and close
 	fclose(output_file);
 	return 0;
 }
